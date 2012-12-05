@@ -64,4 +64,6 @@ references:
 	    r.send(null);
 	}
 	
+	syncTime();
+	
 })(window);
