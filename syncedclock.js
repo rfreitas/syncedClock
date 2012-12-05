@@ -43,7 +43,7 @@ references:
 	    var r = new XMLHttpRequest();
 	    var start = out.getCurrentTime();
 
-	    r.open('HEAD', document.location, false);
+	    r.open('HEAD', out.host() , false);
 	    r.onreadystatechange = function()
 	    {
 	        if (r.readyState != 4)
@@ -65,5 +65,5 @@ references:
 	}
 	
 	syncTime();
-	
+
 })(window);
