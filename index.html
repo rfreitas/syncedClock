@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+	<script src="syncedclock.js"></script>
+	
+</head>
+
+<body ontouchstart="">
+
+	
+
+	<div class="row-fluid main-container">
+
+		
+			<h5 class="home ">Live Room</h5>
+		
+
+		<div class="left-container span6 offset1">
+
+			<div class="players-list">
+				<div class="player-chrome ">
+					<h2>Play.</h2>
+					<div class="player-container">
+						<div class="layer"></div>
+						<div class="player" id="player" ></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="chat-container">
+				<h2>Talk.</h2>
+				<textarea class="chat" rows="4" cols="50" id="text-edit">
+				</textarea>
+			</div>
+		</div>
+
+		<div class="right-container span4">
+				<h2>Change.</h2>
+				<form class="row-fluid add-item" data-bind="submit: addItem" >
+					<input class="span9" type="text" data-bind='value: itemToAdd, valueUpdate: "afterkeydown input"' placeholder="Add media url here.."/>
+					<button class="btn span3" type="submit" data-bind="enable: itemToAdd().length > 0">Add</button>
+				</form>
+				
+
+				<div class="playlist btn-group btn-group-vertical" data-bind="foreach: items">
+					<div class="playitem btn" data-bind="click: $parent.selectedItem">
+						<span data-bind="text: url, visible: !title()"> </span>
+						<span class="title" data-bind="text: title"> </span>
+					</div>
+				</div>
+
+		</div>
+		<div class="dummy span1"></div>
+
+		<div class="history">
+
+		</div>
+	</div>
+
+
+	<script src="app.js"></script>
+
+</body>
+</html>
