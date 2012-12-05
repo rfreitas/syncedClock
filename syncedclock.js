@@ -48,13 +48,11 @@ DEsign notes:
 
 		out.interval = function(newInterval){
 			if (newInterval) interval = newInterval;
-
 			return interval;
 		};//ms
 
 		out.host = function( newHost ){
 			if (newHost) host = newHost;
-
 			return host;
 		};
 
@@ -63,32 +61,35 @@ DEsign notes:
 		};
 
 		function syncTime() {
-		    // Set up our time object, synced by the HTTP DATE header
-		    // Fetch the page over JS to get just the headers
-		    console.log("syncing time");
-		    var r = new window.XMLHttpRequest();
-		    r.overrideMimeType("application/json");
-		    var start = out.getCurrentTime();
+			// Set up our time object, synced by the HTTP DATE header
+			// Fetch the page over JS to get just the headers
+			console.log("syncing time");
+			var r = new window.XMLHttpRequest();
+			r.overrideMimeType("application/json");
+			var start = out.getCurrentTime();
 
-		    r.open('GET', out.host() , false);
-		    r.onreadystatechange = function()
-		    {
-		        if (r.readyState != 4)
-		        {
-		            return;
-		        }
-		        var latency = out.getCurrentTime() - start;
-		        var timestring = JSON.parse(r.responseText).epoch;
+			console.log(out.host());
+			r.open('GET', out.host() , false);
+			r.onreadystatechange = function(){
+				if (r.readyState != 4 && r.status != 200 ){
+					console.log(arguments);
+					return;
+				}
+				var latency = out.getCurrentTime() - start;
+				console.log(r.responseText);
+				var plain = JSON.parse(r.responseText);
+				console.log(plain);
+				var timestring = plain.epoch;
 
-		        console.log("woot!:"+timestring);
+				console.log("woot!:"+timestring);
 
-		        // Set the time to the **slightly old** date sent from the
-		        // server, then adjust it to a good estimate of what the
-		        // server time is **right now**.
-		        var systemtime = new Date(timestring);
-		        systemtime.setMilliseconds(systemtime.getMilliseconds() + (latency / 2));
-		    };
-		    r.send(null);
+				// Set the time to the **slightly old** date sent from the
+				// server, then adjust it to a good estimate of what the
+				// server time is **right now**.
+				var systemtime = new Date(timestring);
+				systemtime.setMilliseconds(systemtime.getMilliseconds() + (latency / 2));
+			};
+			r.send(null);
 		}
 		
 		syncTime();
