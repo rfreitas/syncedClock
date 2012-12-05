@@ -78,15 +78,15 @@ DEsign notes:
 		            return;
 		        }
 		        var latency = out.getCurrentTime() - start;
-		        var timestring = JSON.parse(req.responseText).epoch;
+		        var timestring = JSON.parse(r.responseText).epoch;
 
 		        console.log("woot!:"+timestring);
 
 		        // Set the time to the **slightly old** date sent from the
 		        // server, then adjust it to a good estimate of what the
 		        // server time is **right now**.
-		        systemtime = new Date(timestring);
-		        systemtime.setMilliseconds(systemtime.getMilliseconds() + (latency / 2))
+		        var systemtime = new Date(timestring);
+		        systemtime.setMilliseconds(systemtime.getMilliseconds() + (latency / 2));
 		    };
 		    r.send(null);
 		}
