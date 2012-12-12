@@ -10,6 +10,15 @@
 
 	<script type="text/javascript">
 		var c = sclock();
+
+		var test = function(){
+			var now = new Date(c.getCurrentTime());
+			console.log( now.getMilliseconds() );
+			window.setTimeout( test, 50 );
+		}
+
+		test();
+		
 	</script>
 
 </body>
