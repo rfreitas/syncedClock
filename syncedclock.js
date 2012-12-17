@@ -160,11 +160,11 @@ Design principles:
 			r.open('GET', out.host() , false);
 			
 			r.onreadystatechange = function(){
-				console.log("readyState:"+r.readyState);
+				//console.log("readyState:"+r.readyState);
 				var currentTime = self.getSystemTime();
 				var rtt = currentTime - start;
 				if (r.readyState != 4 || r.status != 200 ){
-					console.log("rtt:"+rtt);
+					//console.log("rtt:"+rtt);
 					if (r.readyState == 4){
 						self._disconnected();
 					}
@@ -174,7 +174,7 @@ Design principles:
 				self._connected();
 
 				var plain = JSON.parse(r.responseText);
-				console.log(plain);
+				//console.log(plain);
 				var epoch = plain.epoch;
 				//TODO validate
 				if ( !self.validateEpoch(epoch) ){
@@ -183,7 +183,7 @@ Design principles:
 
 				var serverCurrentTime = epoch + (rtt/2);
 				var diff = serverCurrentTime - currentTime;
-				console.log("rtt:"+rtt);
+				//console.log("rtt:"+rtt);
 
 				var adjustment = diff - self.difference;
 				//TODO: consider the difference between the current clock time and time it needs to be set
@@ -221,11 +221,11 @@ Design principles:
 					);
 				}
 
-				console.log("diff:"+diff);
+				//console.log("diff:"+diff);
 
-				console.log("woot!:"+epoch);
+				//console.log("woot!:"+epoch);
 
-				console.log("rtt:"+rtt);
+				//console.log("rtt:"+rtt);
 			};
 			r.send(null);
 		};
