@@ -19,6 +19,10 @@ references:
 	http://stackoverflow.com/a/10586177/689223
 	http://stackoverflow.com/questions/10900907/good-precision-for-sync-time-with-ntp-over-javascript
 	http://en.wikipedia.org/wiki/Clock_drift
+	
+	http://stackoverflow.com/questions/102064/clock-drift-on-windows
+	 http://www.codinghorror.com/blog/2007/01/keeping-time-on-the-pc.html
+	  security: http://www.lightbluetouchpaper.org/2006/09/04/hot-or-not-revealing-hidden-services-by-their-clock-skew/
 
 DEsign notes:
 	clock may drift further, meaning that when synced it will actually go back in time
@@ -57,7 +61,7 @@ Design principles:
 
 		var out = this;
 		console.log();
-		if (!interval)	interval	= 10000;
+		if (!interval)	interval	= 30000;//research the best time
 		if (!host)		host		= window.location.origin + "/jsclock";
 
 		out.interval = function(newInterval){
@@ -150,13 +154,13 @@ Design principles:
 		out.sync = function () {
 			// Set up our time object, synced by the HTTP DATE header
 			// Fetch the page over JS to get just the headers
-			console.log("syncing time");
+			//console.log("syncing time");
 			var r = new window.XMLHttpRequest();
 			//r.setRequestHeader("Content-type","application/json");
 			var start = out.getSystemTime();
 
 			var self = this;
-			console.log(out.host());
+			//console.log(out.host());
 			r.open('GET', out.host() , false);
 			
 			r.onreadystatechange = function(){
