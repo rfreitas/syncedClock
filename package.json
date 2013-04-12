@@ -1,0 +1,31 @@
+{
+  "name": "syncedClock",
+  "version": "0.0.1",
+  "description": "A synced node clock for javascript clients",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~3.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rfreitas/syncedClock.git"
+  },
+  "keywords": [
+    "clock",
+    "sync",
+    "synchronization",
+    "node",
+    "web",
+    "client",
+    "rest",
+    "json"
+  ],
+  "author": "Ricardo Freitas",
+  "license": "BSD",
+  "gitHead": "01e53b461fe5f6f06443f05e208c4e7f14e4237d"
+}
