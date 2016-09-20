@@ -2,7 +2,7 @@
   "name": "syncedClock",
   "version": "0.0.1",
   "description": "A synced node clock for javascript clients",
-  "main": "server.js",
+  "main": "syncedclock.js",
   "dependencies": {
     "express": "~3.0.3"
   },
